@@ -1,0 +1,5 @@
+{"_id":"100001","password":"admin","cpassword":"admin","_class":"com.project.auth.model.Admin","role":"admin"}
+{"_id":"100002","password":"pmo","cpassword":"pmo","_class":"com.project.auth.model.Admin","role":"pmo"}
+{"_id":"100003","password":"pmo","cpassword":"pmo","_class":"com.project.auth.model.Admin","role":"pmo"}
+{"_id":"100004","password":"poc","cpassword":"poc","_class":"com.project.auth.model.Admin","role":"poc"}
+{"_id":"100005","password":"poc","cpassword":"poc","_class":"com.project.auth.model.Admin","role":"poc"}
