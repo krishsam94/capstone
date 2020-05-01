@@ -1,8 +1,7 @@
-package com.project.auth.repo;
+package com.project.report.repo;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,50 +11,47 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.project.auth.model.User;
+import com.project.report.model.UserProfile;
+import com.project.report.repo.UserRepo;
 
 import reactor.core.publisher.Mono;
 
 @ExtendWith(SpringExtension.class)
 @DataMongoTest
-class AuthRepoTest {
-
+class UserRepoTest {
     @Autowired
-    private AuthRepo authRepo;
+    private UserRepo userRepo;
 
-    private User user;
+    private UserProfile userProfile;
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        user = new User();
-        user.setUserId("100");
-        user.setPassword("123456");
-        user.setCpassword("123456");
+        userProfile = new UserProfile();
+
+        userProfile.setId("100001");
+        userProfile.setBusinessunit("TestProject");
+        userProfile.setEventlist(null);
+        userProfile.setLivesimpacted(12);
+        userProfile.setStatus("Active");
+        userProfile.setTravelhours(52);
+        userProfile.setUsername("User1");
+        userProfile.setVolunteerhours(12);
     }
 
     @AfterEach
     public void tearDown() throws Exception {
-        authRepo.deleteAll();
+        userRepo.deleteAll();
     }
 
     @Test
     public void testRegisterUserSuccess() {
-        authRepo.save(user);
+        userRepo.save(userProfile);
 
-        Mono<User> fetchUser = authRepo.findById(user.getUserId());
+        Mono<UserProfile> fetchUser = userRepo.findById(userProfile.getId());
         fetchUser.subscribe(curuser -> {
-            assertThat(user.getUserId(), is(curuser.getUserId()));
+            assertThat(userProfile.getId(), is(curuser.getId()));
         });
     }
 
-    @Test
-    public void testLoginUserSuccess() {
-        authRepo.save(user);
-
-        Mono<User> fetchUser = authRepo.findById(user.getUserId());
-        fetchUser.subscribe(curuser -> {
-            assertThat(user.getUserId(), is(curuser.getUserId()));
-        });
-    }
 }

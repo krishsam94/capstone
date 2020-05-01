@@ -1,9 +1,11 @@
-package com.project.event.model;
+package com.project.report.model;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.meanbean.test.BeanTester;
+
+import com.project.report.model.EventInfo;
 
 class EventInfoTest {
 
